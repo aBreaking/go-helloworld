@@ -67,3 +67,24 @@ func integerReplacement(n int) int {
 
 	return ret
 }
+
+/**
+这里的细节：没有直接n+1，因为可能会溢出！
+ 这点没想到，多注意！
+*/
+func integerReplacement_official(n int) int {
+	if n == 1 {
+		return 0
+	}
+	if n%2 == 0 {
+		return 1 + integerReplacement(n/2)
+	}
+	return 2 + min(integerReplacement(n/2), integerReplacement(n/2+1))
+}
+
+func min(a, b int) int {
+	if a > b {
+		return b
+	}
+	return a
+}
